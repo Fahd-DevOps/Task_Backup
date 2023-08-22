@@ -1,0 +1,47 @@
+Design Document:
+
+Title: Secure Encrypted Backup and Restore Script Design
+
+Architecture:
+
+The suite consists of three main components: backup.sh, restore.sh, and backup_restore_lib.sh. These scripts work together to create secure backups of specified directories, encrypt them, and later restore these backups.
+
+Components:
+
+backup.sh: This script handles the backup process, including directory selection, encryption, and remote copying using scp.
+restore.sh: This script restores backups created by backup.sh, decrypts files, and places them in the specified restore directory.
+backup_restore_lib.sh: A library of functions shared between the backup.sh and restore.sh scripts. It provides validation, backup/restore functions, and encryption handling.
+Functionality:
+
+backup.sh:
+
+Validates input parameters.
+Creates backup directories with timestamp.
+Loops through source directories and backups recent files within the specified days.
+Archives and encrypts directories and files.
+Copies backups to a remote server.
+
+restore.sh:
+
+Validates input parameters.
+Creates a temp directory for restoration.
+Loops through backup files, decrypts and stores them in the temp directory.
+Restores files from the temp directory.
+
+Assumptions:
+
+Both the source and backup directories exist.
+GnuPG and tar utilities are available.
+Secure communication is set up for remote copying.
+Encryption and decryption keys are provided as plain text.
+
+Dependencies:
+
+GnuPG for encryption and decryption.
+tar for archiving and compression.
+scp for remote copying.
+
+Security Considerations:
+
+Encryption keys are passed as plain text; handle key security with care.
+Ensure appropriate access controls on backup and restore directories.
