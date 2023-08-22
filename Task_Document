@@ -15,33 +15,33 @@ Functionality:
 
 backup.sh:
 
-Validates input parameters.
-Creates backup directories with timestamp.
-Loops through source directories and backups recent files within the specified days.
-Archives and encrypts directories and files.
-Copies backups to a remote server.
+- Validates input parameters.
+- Creates backup directories with timestamp.
+- Loops through source directories and backups recent files within the specified days.
+- Archives and encrypts directories and files.
+- Copies backups to a remote server.
 
 restore.sh:
 
-Validates input parameters.
-Creates a temp directory for restoration.
-Loops through backup files, decrypts and stores them in the temp directory.
-Restores files from the temp directory.
+- Validates input parameters.
+- Creates a temp directory for restoration.
+- Loops through backup files, decrypts and stores them in the temp directory.
+- Restores files from the temp directory.
 
 Assumptions:
 
-Both the source and backup directories exist.
-GnuPG and tar utilities are available.
-Secure communication is set up for remote copying.
-Encryption and decryption keys are provided as plain text.
+- Both the source and backup directories exist.
+- GnuPG and tar utilities are available.
+- Secure communication is set up for remote copying.
+- Encryption and decryption keys are provided as plain text.
 
 Dependencies:
 
-GnuPG for encryption and decryption.
-tar for archiving and compression.
-scp for remote copying.
+- GnuPG for encryption and decryption.
+- tar for archiving and compression.
+- scp for remote copying.
 
 Security Considerations:
 
-Encryption keys are passed as plain text; handle key security with care.
-Ensure appropriate access controls on backup and restore directories.
+- Encryption keys are passed as plain text; handle key security with care.
+- Ensure appropriate access controls on backup and restore directories.
