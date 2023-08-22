@@ -8,9 +8,10 @@ The suite consists of three main components: backup.sh, restore.sh, and backup_r
 
 Components:
 
-backup.sh: This script handles the backup process, including directory selection, encryption, and remote copying using scp.
-restore.sh: This script restores backups created by backup.sh, decrypts files, and places them in the specified restore directory.
-backup_restore_lib.sh: A library of functions shared between the backup.sh and restore.sh scripts. It provides validation, backup/restore functions, and encryption handling.
+- backup.sh: This script handles the backup process, including directory selection, encryption, and remote copying using scp.
+- restore.sh: This script restores backups created by backup.sh, decrypts files, and places them in the specified restore directory.
+- backup_restore_lib.sh: A library of functions shared between the backup.sh and restore.sh scripts. It provides validation, backup/restore functions, and encryption handling.
+
 Functionality:
 
 backup.sh:
