@@ -1,4 +1,4 @@
-Secure Encrypted Backup and Restore Scripts
+## Secure Encrypted Backup and Restore Scripts:
 
 These scripts allow you to perform secure encrypted backups of directories and restore them later using encryption.
 
