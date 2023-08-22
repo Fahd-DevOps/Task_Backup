@@ -24,3 +24,20 @@ These scripts allow you to perform secure encrypted backups of directories and r
    To schedule the backup script to run daily, add an entry in the crontab:
    ```bash
    0 0 * * * /path/to/backup.sh /path/to/source/directory /path/to/backup/directory encryption_key days
+4. **Security Notes:**
+
+   - Keep encryption keys secure.
+   - Ensure proper permissions on backup and restore directories.
+5. **Dependencies:**
+
+   - GnuPG for encryption and decryption.
+   - tar for archiving and compression.
+   - scp for remote copying.
+6.  **Usage Examples:**
+
+    ```bash
+    # Run backup script
+    ./backup.sh /home/user/documents /backup/user_backups mysecretpassword 7
+
+    # Run restore script
+    ./restore.sh /backup/user_backups /home/user/restored_files mysecretpassword
