@@ -26,19 +26,26 @@ function backup_recent_files() {
 
     dir_name=$(basename "$dir_to_backup")
     backup_file="${backup_dir}/${dir_name}_${backup_date}.tar.gz"
-
+    
     find "$dir_to_backup" -type f -mtime "-$days" -print0 | xargs -0 tar -czf "$backup_file"
-    gpg --symmetric --cipher-algo AES256 -o "$backup_file.gpg" --passphrase "$encryption_key" "$backup_file"
+    
+    # Encrypt the backup file using GnuPG with passphrase
+    gpg --batch --symmetric --cipher-algo AES256 -o "$backup_file.gpg" --passphrase "$encryption_key" "$backup_file"
+    
     rm "$backup_file"
 }
 
-# Function to archive and encrypt directories
+# Function to archive and encrypt directories using GnuPG
 function backup_directories() {
     main_backup_dir="$1"
-    tar_file="${main_backup_dir}_files.tar.gz"
-    
-    find "$main_backup_dir" -maxdepth 1 -type d -exec tar -uf "$tar_file" {} \;
-    gpg --symmetric --cipher-algo AES256 -o "$tar_file.gpg" --passphrase "$encryption_key" "$tar_file"
+    backup_date="$2"
+    tar_file="${main_backup_dir}_${backup_date}.tar.gz"
+
+    tar -czf "$tar_file" -C "$(dirname "$main_backup_dir")" "$(basename "$main_backup_dir")"
+
+    # Encrypt the tar archive using GnuPG with passphrase
+    gpg --batch --symmetric --cipher-algo AES256 -o "$tar_file.gpg" --passphrase "$encryption_key" "$tar_file"
+
     rm "$tar_file"
 }
 
@@ -59,14 +66,17 @@ function validate_restore_params() {
     fi
 }
 
-# Function to decrypt and store files
+# Function to decrypt and store files using GnuPG
 function decrypt_and_store() {
     backup_file="$1"
     temp_dir="$2"
     decryption_key="$3"
 
     decrypted_file="${backup_file%.gpg}"
-    gpg -o "$decrypted_file" --decrypt --passphrase "$decryption_key" "$backup_file"
+    
+    # Decrypt the backup file using GnuPG
+    echo "$decryption_key" | gpg --batch --yes --passphrase-fd 0 -o "$decrypted_file" --decrypt "$backup_file"
+    
     mv "$decrypted_file" "$temp_dir"
 }
 
