@@ -1,0 +1,2 @@
+remote_server="user@remote_server"
+remote_destination="/path/to/backup/directory"
