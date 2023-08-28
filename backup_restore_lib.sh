@@ -47,6 +47,7 @@ function backup_directories() {
     gpg --batch --symmetric --cipher-algo AES256 -o "$tar_file.gpg" --passphrase "$encryption_key" "$tar_file"
 
     rm "$tar_file"
+    echo "Backup Completed Successfully"
 }
 
 # Function to validate restore parameters
@@ -87,4 +88,5 @@ function restore_files() {
 
     find "$temp_dir" -type f -exec tar -xf {} -C "$restore_dir" \;
     rm -r "$temp_dir"
+    echo "Restoration Completed Successfully"
 }
