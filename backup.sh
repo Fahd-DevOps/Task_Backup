@@ -21,4 +21,7 @@ done
 backup_directories "$backup_dir" "$3"
 
 # Copy backup to a remote server using scp >> (secure copy) 
-scp -r "$backup_dir" user@remote_server:/path/to/backup/directory
+source remote_config.txt
+
+scp -r "$backup_dir" "$remote_server:$remote_destination"
+echo "Backup Sent Successfully"
