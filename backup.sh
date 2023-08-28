@@ -23,5 +23,6 @@ backup_directories "$backup_dir" "$3"
 # Copy backup to a remote server using scp >> (secure copy) 
 source remote_config.txt
 
-scp -r "$backup_dir" "$remote_server:$remote_destination"
+encrypted_archive="../backup_test/"$backup_dir"_"$encryption_key".tar.gz.gpg"
+scp -r $encrypted_archive $remote_server:$remote_destination
 echo "Backup Sent Successfully"
