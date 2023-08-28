@@ -18,7 +18,7 @@ These scripts allow you to perform secure encrypted backups of directories and r
    - `backup.sh`: Initiates the backup process, encrypts files, and copies them to a remote server.
    - `restore.sh`: Restores encrypted backup files, decrypts them, and places them in the restore directory.
    - `backup_restore_lib.sh`: A library of shared functions for validation, backup, and restore.
-   - `remote_config.txt`: file used to specify the remote server configurations where your backup files will be sent.
+   - `remote_config.txt`: Specify the remote server configurations where your backup files will be sent.
 
 3. **Cron Job:**
 
