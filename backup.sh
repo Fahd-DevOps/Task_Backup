@@ -25,4 +25,5 @@ source remote_config.txt
 
 encrypted_archive="../backup_test/"$backup_dir"_"$encryption_key".tar.gz.gpg"
 scp -r $encrypted_archive $remote_server:$remote_destination
+rm -r "$encrypted_archive"
 echo "Backup Sent Successfully"
